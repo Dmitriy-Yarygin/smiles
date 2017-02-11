@@ -1,0 +1,64 @@
+body, .main{
+  color: indigo;
+  background: NavajoWhite;
+}
+.jumbotron {
+    margin: 0;
+    padding: 1em;
+    min-width: 320px;
+    background: PapayaWhip;
+    background: linear-gradient( to bottom, PaleGreen, NavajoWhite);
+}
+.btn-center {
+  color: inherit;
+  min-width: 200px;
+}
+.main{
+  min-width: 320px;
+}
+.main>div{  
+  margin-top: 1em;
+  font-weight: bold;
+  font-size: larger;
+}
+.div1, .div2 {
+  position: relative;
+  padding: 5px;
+  border: 1px solid SaddleBrown;
+  background: PapayaWhip;  
+  height: 300px;  
+}
+.statueOnPedestal {
+}
+.statue {
+  height: 200px;
+  /*width: 150px;*/
+}
+.pedestal{  
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  background: green;
+} 
+  
+@media (min-width: 992px) /* Разрешение более 992px включительно*/
+{
+  .div1, .div2, .result  {  
+    height: 450px;  
+  }   
+  .result {
+    position: relative; 
+  }
+  .statueOnPedestal {
+    position: absolute;
+    bottom: 0;
+  }
+}
+@media (min-width: 1200px) /* Разрешение более 1200px включительно*/
+{
+  .div1, .div2, .result  {  
+    height: 600px;  
+  } 
+}
+  
