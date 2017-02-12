@@ -1,31 +1,48 @@
-var count,
-    maxLevel = 10; 
+var level=0,
+    maxLevel = 3,
+    gameIsOver = false; 
+
+window.onload = function() {
+  playSoundAfter( 'help' );
+};
+window.onresize = fnResize;    
 newGame();
+
+$('#help').on('show.bs.modal', function(){ playSound( 'help' ); } );
+
+$('#help').on('hide.bs.modal', function(){ playSound( '' ); } );
 /******************************************************************************************************/
 /******************************************************************************************************/
 function newGame() {  
-  count = 0;
-  nextTurn();
+  gameIsOver = false;
+  document.querySelector('#level').innerHTML = level = 0;
+  pedestalGrow( level );
+  generateSmiles();
 }
 /******************************************************************************************************/
-function nextTurn() {  
-  pedestalGrow( count );
-  document.querySelector('#levelsCount').innerHTML = count;
-  if ( count >= maxLevel) {
-    alert('Победа!');
+function nextTurn() { 
+  if (gameIsOver) return;
+  level++;
+  playSound( 'right' );
+  pedestalGrow( level );
+  document.querySelector('#level').innerHTML = level;
+  if ( level >= maxLevel) {
+    gameIsOver = true;
+    setTimeout( function(){alert('Победа!');}, 100 );
   } else {
     console.log(" You are right ! ");
     generateSmiles();
-  }  
+  }   
 }
 /******************************************************************************************************/
 function generateSmiles() {
-  var i, elem,
+  var elem,
+      i = level+1,
       board1 =  document.querySelector('.div1'),
       board2 =  document.querySelector('.div2');
   while ( elem = board1.lastElementChild ) {  board1.removeChild(elem) }
   while ( elem = board2.lastElementChild ) {  board2.removeChild(elem) }
-  for ( i = ++count; i--; ) {
+  for ( ; i--; ) {
     elem = make1Smile();
     board1.appendChild( elem );
     board2.appendChild( elem.cloneNode() );
@@ -45,17 +62,50 @@ function make1Smile() {
   return elem;
 }
 /******************************************************************************************************/
-function pedestalGrow(h) {
-  var statueOnPedestal = document.querySelector('.statueOnPedestal'),      
-      pedestal = document.querySelector('.pedestal'),
-      h = Math.floor( h*400/maxLevel );
-  if (count) {
-    pedestal.firstElementChild.innerHTML = count;
+function pedestalGrow(level) {
+  var countInPedestal = document.querySelector('.countInPedestal');
+  if (level) {
+    countInPedestal.innerHTML = level;
   } else {
-    pedestal.firstElementChild.innerHTML = '';
+    countInPedestal.innerHTML = '';
   }
-  statueOnPedestal.style.height = h + 200 +'px';
+  fnResize();
+}
+/*****************************************************************************************************/
+function fnResize() {
+  var divHeight = document.querySelector('.div1').offsetHeight, 
+      statueHeight = document.querySelector('.statue').offsetHeight,
+      pedestal = document.querySelector('.pedestal'), 
+      h = Math.floor( level/maxLevel * ( divHeight - statueHeight + 50 ) ); 
+  console.log( 'LEVEL='+level+ 'divHeight=' + divHeight + ' statueHeight=' + statueHeight + ' h=' + h             );      
+  document.querySelector('.statueOnPedestal').style.height = h + statueHeight +'px';
   pedestal.style.height = h + 'px';
 }
+/*****************************************************************************************************/
+function playSoundAfter(fileName) { 
+  var a = document.querySelector("audio");
+  if ( a.ended ) {
+    playSound(fileName);
+  } else {
+    soundTimer = setTimeout(function() { playSoundAfter(fileName) }, 100);
+  }
+} 
 /******************************************************************************************************/
+function playSound(fileName) {
+  clearTimeout(soundTimer);
+  var mySrc = '';
+  if (fileName) mySrc = "sound/"+fileName+".mp3";
+  document.querySelector("audio").setAttribute( "src", mySrc ); 
+} 
+/******************************************************************************************************/
+function playYoutube(start, end) { 
+   var mySrc = "https://www.youtube.com/embed/ybt2jhCQ3lA?controls=0&showinfo=0&iv_load_policy=3&modestbranding=1&fs=0&rel=0&autoplay=0&start="+start;
+   if (end) mySrc += "&end="+end;
+   document.querySelector("iframe").setAttribute( "src", mySrc ); 
+} 
+/******************************************************************************************************/
+function stopYoutube() {
+   clearTimeout(videoTimer);
+   $('#youWinModal iframe').removeAttr('src');
+} 
 /******************************************************************************************************/

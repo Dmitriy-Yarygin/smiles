@@ -1,21 +1,28 @@
-body, .main{
-  color: indigo;
-  background: NavajoWhite;
-}
-.jumbotron {
-    margin: 0;
-    padding: 1em;
+body {
+    height: 100vh;
     min-width: 320px;
-    background: PapayaWhip;
-    background: linear-gradient( to bottom, PaleGreen, NavajoWhite);
+    font-family: cursive;
+    color: green;
+    background: PaleGreen;
+    background: linear-gradient( to top, PaleGreen, NavajoWhite);
 }
-.btn-center {
-  color: inherit;
-  min-width: 200px;
+.myMenu {
+  background: NavajoWhite;
+  background: linear-gradient( to bottom, PaleGreen, NavajoWhite);
 }
-.main{
-  min-width: 320px;
+.navbar {
+  border: 0;
 }
+.navbar-default .navbar-brand, 
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-nav>li>a {
+    color: green;
+}
+.navbar-default .navbar-brand {
+  font-size: 200%;
+  font-weight: 600;
+}
+
 .main>div{  
   margin-top: 1em;
   font-weight: bold;
@@ -28,12 +35,6 @@ body, .main{
   background: PapayaWhip;  
   height: 300px;  
 }
-.statueOnPedestal {
-}
-.statue {
-  height: 200px;
-  /*width: 150px;*/
-}
 .pedestal{  
   display:flex;
   justify-content: center;
@@ -42,11 +43,14 @@ body, .main{
   background: green;
 } 
   
-@media (min-width: 992px) /* Разрешение более 992px включительно*/
+@media (min-width: 768px) /* Разрешение более 768px включительно*/
 {
   .div1, .div2, .result  {  
-    height: 450px;  
-  }   
+    height: 300px;  
+  }  
+  .statue {
+    height: 150px;
+  }
   .result {
     position: relative; 
   }
@@ -54,11 +58,29 @@ body, .main{
     position: absolute;
     bottom: 0;
   }
+  .countInPedestal {
+    color: NavajoWhite;
+  }
+}
+@media (min-width: 992px) /* Разрешение более 992px включительно*/
+{
+  .navbar {
+    margin-bottom: 0; 
+  }
+  .div1, .div2, .result  {  
+    height: 450px;  
+  }   
+  .statue {
+    height: 180px;
+  } 
 }
 @media (min-width: 1200px) /* Разрешение более 1200px включительно*/
 {
   .div1, .div2, .result  {  
-    height: 600px;  
+    height: 600px; 
+  }
+  .statue {
+    height: 240px;
   } 
 }
   

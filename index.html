@@ -6,40 +6,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>smiles</title>
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
-  <link rel='stylesheet prefetch' href='https://dmitriy-yarygin.github.io/TestingBootstrap/css/font-awesome.min.css'>
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <header class='jumbotron'>
-    <div class='container'>
-      <h1 class=''> Найди отличие</h1> 
-      <button class='btn btn-success btn-center' 
-              onclick='newGame()'>Начать новую игру
-      </button> 
-    </div>  
-  </header>
+
+  <nav class='navbar navbar-default myMenu '>  
+    <div class='container'>  
+      <div class="navbar-header">
+        <p class='navbar-brand'> Найди отличие </p>
+        <button type='button' class="navbar-toggle" data-toggle='collapse' data-target='.navbar-collapse'>
+          <span class='sr-only'> Toggle navigation</span> 
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+        </button>
+      </div>
+      <ul class='nav navbar-nav collapse navbar-collapse'>
+        <li><a onclick="newGame();">Начать заново</a></li>
+        <li><a data-toggle="modal" data-target="#help">Помощь</a></li>
+        <li><a href='#' onclick="">Настройки</a></li>
+        <li><a href='#'onclick="">О программе</a></li>
+      </ul>
+    </div> 
+  </nav> 
+
+
+  <div id="help" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Помощь </h4>
+        </div>
+        
+        <div class="modal-body">
+          <p>На экране расположены две "картинки" в которых появляются улыбки.
+            Для того чтобы перейти на следующий уровень, надо найти и нажать улыбку из-за которой "картинки" отличаются.</p>  
+          <p>Количество уровней можно задать в настройках игры.</p>
+          <p>Звук можно отключить в настройках игры.</p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" onclick="playSound('help');">Повторить</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <div class='main container'>
-    <div class='col-xs-12 col-sm-6 col-md-5'> 
-      <div class='div1'> А </div> 
+    <div class='col-xs-12 col-sm-5 col-md-5'> 
+      <div class='div1'> 1 </div> 
     </div>  
-    <div class='col-xs-12 col-sm-6 col-md-5'> 
-      <div class='div2'> Б </div> 
+    <div class='col-xs-12 col-sm-5 col-md-5'> 
+      <div class='div2'> 2 </div> 
     </div>  
 
-    <div class='col-xs-12 col-sm-12 col-md-2 result'>
-      <div class='statueOnPedestal hidden-xs hidden-sm'>
-        <img class='statue' src="img/sam.png"/>
+    <div class='col-xs-12 col-sm-2 col-md-2 result  hidden-xs'>
+      <div class='statueOnPedestal '>
+        <img class='statue' src="img/sam.png" 
+              ondblclick="playSound( 'hello' );playSoundAfter( 'help' );" />
         <div class='pedestal'>          
-          <b></b>
+          <b class='countInPedestal'></b>
         </div>
       </div>
     </div> 
     
-    <div class='col-xs-12'> Пройдено уровней: <span id='levelsCount'> 0 </span> </div> 
+    <div class='col-xs-12 levelTextDiv'> Уровень: <span id='level'> 0 </span> </div> 
 
   </div>
+  <footer></footer>
+
+  <audio src="sound/hello.mp3" autoplay></audio>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
