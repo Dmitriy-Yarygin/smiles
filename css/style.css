@@ -42,6 +42,14 @@ body {
   border: 1px solid black;
   background: green;
 } 
+.myWorks>li {
+  margin-top: 1em; 
+}
+
+iframe {
+  height: 400px;
+  width: 100%;
+}
   
 @media (min-width: 768px) /* Разрешение более 768px включительно*/
 {

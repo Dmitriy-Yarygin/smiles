@@ -9,8 +9,11 @@ window.onresize = fnResize;
 newGame();
 
 $('#help').on('show.bs.modal', function(){ playSound( 'help' ); } );
-
 $('#help').on('hide.bs.modal', function(){ playSound( '' ); } );
+
+
+$('#youWinModal').on('show.bs.modal', function(){  playYoutube( 0 ); } );
+$('#youWinModal').on('hide.bs.modal', stopYoutube );
 /******************************************************************************************************/
 /******************************************************************************************************/
 function newGame() {  
@@ -23,14 +26,18 @@ function newGame() {
 function nextTurn() { 
   if (gameIsOver) return;
   level++;
-  playSound( 'right' );
   pedestalGrow( level );
   document.querySelector('#level').innerHTML = level;
   if ( level >= maxLevel) {
     gameIsOver = true;
-    setTimeout( function(){alert('Победа!');}, 100 );
+    playSound( '' );
+    setTimeout( function(){  
+      document.querySelector('#achivedLevel').innerHTML = level;      
+      $('#youWinModal').modal('show');                
+    }, 100 );
   } else {
     console.log(" You are right ! ");
+    playSound( 'right' );
     generateSmiles();
   }   
 }
@@ -99,13 +106,13 @@ function playSound(fileName) {
 } 
 /******************************************************************************************************/
 function playYoutube(start, end) { 
-   var mySrc = "https://www.youtube.com/embed/ybt2jhCQ3lA?controls=0&showinfo=0&iv_load_policy=3&modestbranding=1&fs=0&rel=0&autoplay=0&start="+start;
-   if (end) mySrc += "&end="+end;
-   document.querySelector("iframe").setAttribute( "src", mySrc ); 
+   var mySrc = "https://www.youtube.com/embed/EPrxjhvO1TU", 
+       options = "?controls=1&showinfo=0&iv_load_policy=3&modestbranding=1&fs=0&rel=0&autoplay=1&start="+start;
+   if (end) options += "&end="+end;
+   document.querySelector("iframe").setAttribute( "src", mySrc + options ); 
 } 
 /******************************************************************************************************/
 function stopYoutube() {
-   clearTimeout(videoTimer);
    $('#youWinModal iframe').removeAttr('src');
 } 
 /******************************************************************************************************/

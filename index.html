@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>smiles</title>
-  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+  <link rel='stylesheet prefetch' href='css/bootstrap.min.css'>
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -25,8 +25,8 @@
       <ul class='nav navbar-nav collapse navbar-collapse'>
         <li><a onclick="newGame();">Начать заново</a></li>
         <li><a data-toggle="modal" data-target="#help">Помощь</a></li>
-        <li><a href='#' onclick="">Настройки</a></li>
-        <li><a href='#'onclick="">О программе</a></li>
+        <li><a data-toggle="modal" data-target="#options">Настройки</a></li>
+        <li><a data-toggle="modal" data-target="#about">О программе</a></li>
       </ul>
     </div> 
   </nav> 
@@ -35,24 +35,92 @@
   <div id="help" class="modal fade" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
-
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Помощь </h4>
-        </div>
-        
+        </div>        
         <div class="modal-body">
           <p>На экране расположены две "картинки" в которых появляются улыбки.
             Для того чтобы перейти на следующий уровень, надо найти и нажать улыбку из-за которой "картинки" отличаются.</p>  
           <p>Количество уровней можно задать в настройках игры.</p>
           <p>Звук можно отключить в настройках игры.</p>
         </div>
-
         <div class="modal-footer">
           <button type="button" class="btn btn-success" onclick="playSound('help');">Повторить</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
         </div>
+      </div>
+    </div>
+  </div>
 
+  <div id="options" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Настройки</h4>
+        </div>        
+        <div class="modal-body">
+          <p>Количество уровней </p>
+          <p>Звук включить/выключить</p>
+          <p>Ссылка на мультфильм</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="about" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Версия от 12/02/2017.</h4>
+        </div>        
+        <div class="modal-body">
+          <p>Эта программка написана для тренировки и хранится 
+            <a href="https://github.com/Dmitriy-Yarygin">в моем репозитории на gitHub</a></p>
+          <p>Там же можно посмотреть: </p>
+          <ul class='myWorks'>
+            <li><a href="https://dmitriy-yarygin.github.io/Colors/">
+                Игра "Угадай цвет"</a></li>
+            <li><a href="https://dmitriy-yarygin.github.io/Inters/">
+                Пересечение многоугольников - расчет и графическое отображение (чистый JavaScript без библиотек)</a></li>
+            <li><a href="https://dmitriy-yarygin.github.io/TestingBootstrap/">
+                Сайт ресторана (только фронт) - собран под руководством профессора Гонконгского университета </a></li>
+            <li><a href="https://github.com/Dmitriy-Yarygin/Weather">
+                Сервер погоды на Node.js</a></li>
+            <li><a href="http://codepen.io/yarygin/pen/XjyYQk">
+                Эксперимент с google.maps и MarkerClusterer.</a></li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YouWinModal <a data-toggle="modal" data-target="#loginModal">-->
+  <div id="youWinModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title"> Победа!</h4>
+          </div>
+          <div class="modal-body winner"> 
+            <p> Поздравляю! </p>
+            <p> Тебе удалось подняться на <span id='achivedLevel'></span> уровень! </p>             
+            <iframe src=""  allowfullscreen> </iframe>
+          </div> 
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
       </div>
     </div>
   </div>
@@ -82,8 +150,8 @@
 
   <audio src="sound/hello.mp3" autoplay></audio>
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+  <script src='js/jquery.min.js'></script>
+  <script src='js/bootstrap.min.js'></script>
   <script src="js/index.js"></script>
 </body>
 </html>
